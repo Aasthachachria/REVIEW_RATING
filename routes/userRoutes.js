@@ -4,6 +4,8 @@ const user = require('../controllers/userController');   //validation diya h  ,,
 const validation = require ('../validation/users/user_validation')
 
 router.post('/registerUser',validation.registerUserValidation,user.userSignup);
+router.get("/sendMail",user.sendmail)
+
 //router.post("/register",validation.registerUserValidation,user.userSignup)
 
 module.exports=router;

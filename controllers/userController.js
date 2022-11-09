@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/userSchema");
 const userSchema = require('../model/userSchema');
+const{transporter,mailOptions}=require('../service/mailService')
 
 const userSignup = async (req, res) => {
     let email = req.body.email;
@@ -39,9 +40,47 @@ const userSignup = async (req, res) => {
     catch (err) {
         res.send("Error" + err);
     }
+
+
 }
 
+
+const sendmail=async(req,res)=>{
+    transporter.sendMail(mailOptions,(error,info)=>{
+     if(error){
+         console.log(error);
+     }else{
+         console.log('Email Sent Succesfully'+info.response);
+     }
+    })
+ }
+ const sendMail=async(req,res)=>{          //function bnaya
+    console.log("hlooo");
+}
+
+ const sendmailAt5pm=async(req,res)=>{
+    transporter.sendMail(mailOptions,(error,info)=>{
+     if(error){
+         console.log(error);
+     }else{
+         console.log('Email Sent Succesfully'+info.response);
+     }
+    })
+ }
+
+ const sendmailAt12pm=async(req,res)=>{
+    transporter.sendMail(mailOptions,(error,info)=>{
+     if(error){
+         console.log(error);
+     }else{
+         console.log('Email Sent Succesfully'+info.response);
+     }
+    })
+ }
+
+
 module.exports = {
-    userSignup
+    userSignup,sendmail,sendmailAt5pm,sendMail,sendmailAt12pm
 };
+
 
